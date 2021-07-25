@@ -1,0 +1,56 @@
+﻿
+/*.full-dim {*/
+    /*position:absolute ;*/
+    /*width:auto ;
+    height: auto;
+    background-image:url(/img/bg.png) ;*/
+    /*background-size:contain;*/
+   
+/*}
+.parent {*/
+    /*display: flex;*/
+    /*justify-content: center;
+    text-align:center;
+    align-items: center;
+    vertical-align:central;
+}*/
+/*
+.title1 {
+    width: 180px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.box {
+    width: auto;
+    height: auto;
+    min-width:60px;
+    margin-top:5vh;
+    margin-left:3vh;
+}*/
+
+.animate {
+    transition: 2s transform;
+}
+/*
+.arrow{
+    transform:rotate(90deg) ;
+    margin-left:-10px ;
+}
+
+.spin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: central;
+    margin-top:5vh ;
+}
+
+.btn{
+    width:120px;
+    height:60px;
+}
+*/
+
+

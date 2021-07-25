@@ -1,0 +1,95 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html style=" width: 100%; height: 100%; margin: 0; padding: 0;">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+    <title>Game</title>
+    <link href="~/Content/sh.css" rel="stylesheet" />
+</head>
+
+<body style=" width: 100%; height: 100%; margin: 0; padding: 0; background-image: url(/img/bg2.jpg); background-size: cover; background-repeat: no-repeat; background-position: top center;">
+
+    <div>
+        <img src="~/img/Asset5.png" style="width: 40%; display: block; margin-left: auto; margin-right: auto;  margin-top:1vh;" />
+    </div>
+    <div>
+        <img src="~/img/Asset4.png" style="width: 60%; display: block; margin-left: auto; margin-right: auto; margin-top:1vh;" />
+    </div>
+
+    <div style="position:relative; width:100%;">
+        <img id="wheel" src="~/img/Asset1.png" class="animate" style="width:90%; display: block; margin-left: auto; margin-right: auto; position:relative;" />
+        <img src="~/img/Asset2.png" style="width:20%; display: block; margin-left: auto; margin-right: auto; position:absolute; top:32%; left:40%;" />
+    </div>
+
+    <div>
+        <img id="btn" src="~/img/Asset3.png" onclick="rotate()" style="width:30%; display: block; margin-left: auto; margin-right: auto; margin-top:3vh;" />
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+
+        function rotate() {
+            //GetPrize();
+            var wheelSector = 0;
+            var imageselection = "";
+            $.ajax({
+                url: 'https://localhost:44322/Game/GetPrize',
+                type: 'GET',
+                success: function (data, textStatus, xhr) {
+                    var splitValues = data.split(';')
+
+                    wheelSector = splitValues[0];
+                    imageselection = splitValues[1];
+                },
+                error: function (xhr, textStatus, errorThrown) {
+
+                }
+
+            });
+
+            document.getElementById("btn").style.display = "none";
+            //document.getElementById("btn").hidden = "hidden";
+            document.getElementById("wheel").classList.remove("animate");
+
+            // set transition rotate with 0 deg
+            document.getElementById("wheel").style.transform = "rotate(0deg)";
+
+            // return transition attr\
+
+            setTimeout(function () {
+
+                document.getElementById("wheel").classList.add("animate");
+                var PrizeAngle = 0;
+
+                if (wheelSector == 3) {
+                    PrizeAngle = 1440 + 90;
+                    console.log("Index 3, " + PrizeAngle);
+                }
+                else if (wheelSector == 1) {
+                    PrizeAngle = 1440 + 270;
+                }
+                else {
+                    PrizeAngle = 1440 + (wheelSector * 90);
+                }
+
+                document.getElementById("wheel").style.transform = "rotate(" + PrizeAngle + "deg)";
+
+                setTimeout(function () {
+                    document.getElementById("btn").style.display = "block";
+                    // navigate to prize page.
+                    if (wheelSector!=2)
+                    window.open(imageselection);
+
+                }, 3000);
+            }, 500);
+
+        }
+
+
+    </script>
+</body>
+</html>

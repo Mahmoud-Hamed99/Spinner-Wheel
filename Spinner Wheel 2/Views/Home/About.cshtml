@@ -1,0 +1,37 @@
+﻿
+    <div class="parent">
+        <img src="~/img/WheelFR.png" id="box" class="box animate" />
+        <img src="~/img/Envf.png" class="arrow" />
+
+    </div>
+
+<div class="spin">
+    <button onclick="rotate()" class="btn">Start</button>
+</div>
+
+<script>
+    function rotate() {
+        //var PrizeAngle = 0;
+        
+        //document.getElementById("box").classList.remove("animate"); 
+
+        // set transition rotate with 0 deg 
+
+        //document.getElementById("box").style.transform = "rotate(" + PrizeAngle + "deg)";
+        
+
+        // return transition attr 
+        //document.getElementById("box").classList.add("animate"); 
+
+        var random = getRandomIndex();
+        var PrizeAngle = 1440 + (random * 45);
+        document.getElementById("box").style.transform = "rotate(" + PrizeAngle + "deg)";
+
+      
+        
+    }
+
+    function getRandomIndex() {
+        return Math.floor((Math.random() * 8));
+    }
+</script>
